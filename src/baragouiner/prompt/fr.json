@@ -1,0 +1,3 @@
+{
+    "fiveDots": "Extrait moi les 5 points à retenir de l'article. Chaque point fait moins de 3 lignes. Tu dois me répondre en français. A la suite séparé par ---- indique moi si c'est utile pour moi de le lire \n\n{{input}}"
+}

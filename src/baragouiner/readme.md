@@ -1,0 +1,1 @@
+"baragouiner" in franch means "to mumble". I kinda like the idea to not prompt a llm but to mumble to ia.

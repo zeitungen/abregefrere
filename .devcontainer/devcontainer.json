@@ -1,0 +1,20 @@
+{
+    "name": "bouine-ai/abregefrere Node.js Dev Container",
+    "image": "node:20.14",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "GitHub.copilot"
+            ],
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+        }
+    },
+    "forwardPorts": [
+        3000
+    ],
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+}

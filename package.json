@@ -1,0 +1,18 @@
+{
+  "name": "abregefrere",
+  "version": "0.0.1",
+  "description": "Tools to summarize text with ai",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maxime Journaux",
+  "license": "WTFPL",
+  "dependencies": {
+    "@mistralai/mistralai": "^0.5.0",
+    "@mozilla/readability": "^0.5.0",
+    "got": "^14.4.1",
+    "jsdom": "^24.1.0",
+    "mustache": "^4.2.0"
+  }
+}
