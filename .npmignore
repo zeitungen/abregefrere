@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+.devcontainer
+
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
