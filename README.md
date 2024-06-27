@@ -26,7 +26,7 @@ const {
     ConfigurationLoader, configFactory,
     Datasource, dataSourceFactory,
     Readabilizer, AbregeFrere
-} = require('./src');
+} = require('abregefrere');
 
 (async () => {
     const config = await configFactory(
