@@ -38,6 +38,13 @@ class AbregeFrere {
         return this.parseFiveDotsResponse(response);
     }
 
+    async fiveTags(datasource, nb = 5) {
+        const input = await datasource.get();
+        const prompt = await this.getBaragouiner().getFiveTags({ input, nb });
+        const response = await this.prompt(prompt);
+        return this.parseFiveTagsResponse(response);
+    }
+
     // init
 
     async createBaragouiner() {
@@ -59,7 +66,7 @@ class AbregeFrere {
         return response;
     }
 
-    // five dots helpers
+    // helpers
 
     parseFiveDotsResponse(response) {
         let parts = response.split(/-{3,}/);
@@ -69,6 +76,12 @@ class AbregeFrere {
         return {
             fiveDots: parts[0].trim(),
             summary: parts[1]?.trim() ?? '',
+        }
+    }
+
+    parseFiveTagsResponse(response) {
+        return {
+            tags: response.split(',').map(tag => tag.trim()),
         }
     }
 }

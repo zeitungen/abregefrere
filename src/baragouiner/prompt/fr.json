@@ -1,3 +1,4 @@
 {
-    "fiveDots": "Extrait moi les {{nb}} points à retenir de l'article. Chaque point fait moins de 3 lignes. Tu dois me répondre en français. A la suite séparé par ---- indique moi si c'est utile pour moi de le lire \n\n{{input}}"
+    "fiveDots": "Extrait moi les {{nb}} points à retenir de l'article. Chaque point fait moins de 3 lignes. Tu dois me répondre en français. A la suite séparé par ---- indique moi si c'est utile pour moi de le lire \n\n{{input}}",
+    "fiveTags": "Dans le cadre de l'analyse de contenu, j'ai besoin d'identifier les mots clés d'un article pour mieux comprendre ses thématiques principales. Peux-tu extraire les {{nb}} mots clés les plus importants de cet article et fournir ta réponse en français ? Utilise le format suivant : <tag>,<tag>,...\n\n{{input}}"
 }

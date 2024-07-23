@@ -34,6 +34,20 @@ class Baragouiner {
         return this.render(template, params);
     }
 
+    async getFiveTags(params) {
+        const template = await this.prompt.getFiveTagsTemplate();
+
+        if(!params.nb) {
+            params.nb = 5;
+        }
+
+        if(params.input === undefined) {
+            params.input = '';
+        }
+
+        return this.render(template, params);
+    }
+
     // template helpers
 
     async render(template, data) {

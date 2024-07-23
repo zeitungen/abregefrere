@@ -28,6 +28,10 @@ class PromptEngine {
         return this.prompts.fiveDots;
     }
 
+    async getFiveTagsTemplate() {
+        return this.prompts.fiveTags;
+    }
+
     // init helpers
 
     getLangFilepath(lang) {
