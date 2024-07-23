@@ -22,6 +22,15 @@ class Baragouiner {
 
     async getFiveDotsPrompt(params) {
         const template = await this.prompt.getFiveDotsTemplate();
+
+        if(!params.nb) {
+            params.nb = 5;
+        }
+
+        if(params.input === undefined) {
+            params.input = '';
+        }
+
         return this.render(template, params);
     }
 

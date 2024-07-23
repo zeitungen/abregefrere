@@ -31,9 +31,9 @@ class AbregeFrere {
         this.aiEngine = await this.createAiEngine();
     }
 
-    async fiveDots(datasource) {
+    async fiveDots(datasource, nb = 5) {
         const input = await datasource.get();
-        const prompt = await this.getBaragouiner().getFiveDotsPrompt({ input });
+        const prompt = await this.getBaragouiner().getFiveDotsPrompt({ input, nb });
         const response = await this.prompt(prompt);
         return this.parseFiveDotsResponse(response);
     }
