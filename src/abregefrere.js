@@ -69,14 +69,7 @@ class AbregeFrere {
     // helpers
 
     parseFiveDotsResponse(response) {
-        let parts = response.split(/-{3,}/);
-        if (parts.length < 2) {
-            parts = response.split('\n\n');
-        }
-        return {
-            fiveDots: parts[0].trim(),
-            summary: parts[1]?.trim() ?? '',
-        }
+        return JSON.parse(response);
     }
 
     parseFiveTagsResponse(response) {

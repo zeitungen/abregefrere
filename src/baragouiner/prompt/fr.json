@@ -1,4 +1,4 @@
 {
-    "fiveDots": "Extrait moi les {{nb}} points à retenir de l'article. Chaque point fait moins de 3 lignes. Tu dois me répondre en français. A la suite séparé par ---- indique moi si c'est utile pour moi de le lire \n\n{{input}}",
+    "fiveDots": "Extrait pour moi les {{nb}} points à retenir de l'article. Chaque point doit faire moins de 3 lignes. Tu dois me répondre en français. Indique-moi si c'est utile pour moi de lire l'article, en justifiant ta réponse. Fournis la réponse sous forme de JSON brut que je peux directement parser avec du code (sans ```json) avec deux champs : \"dots\" (une liste des points à retenir) et \"haveToRead\" (une chaîne de caractères indiquant si c'est utile de lire l'article avec une justification).\n\n{{input}}",
     "fiveTags": "Dans le cadre de l'analyse de contenu, j'ai besoin d'identifier les mots clés d'un article pour mieux comprendre ses thématiques principales. Peux-tu extraire les {{nb}} mots clés les plus importants de cet article et fournir ta réponse en français ? Utilise le format suivant : <tag>,<tag>,...\n\n{{input}}"
 }
