@@ -22,6 +22,10 @@ class HttpDatasource {
         return this.config.method ?? 'GET';
     }
 
+    getHeaders() {
+        return this.config.headers ?? this.createDefaultHeaders();
+    }
+
     getReadabilizer() {
         return this.config.readabilizer;
     }
@@ -47,7 +51,12 @@ class HttpDatasource {
     createOptions() {
         return {
             method: this.getMethod(),
+            headers: this.getHeaders(),
         };
+    }
+
+    createDefaultHeaders() {
+        return {};
     }
 }
 
