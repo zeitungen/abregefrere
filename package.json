@@ -1,6 +1,6 @@
 {
   "name": "abregefrere",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "AI powered tools for summarizing texts",
   "main": "src/index.js",
   "scripts": {
