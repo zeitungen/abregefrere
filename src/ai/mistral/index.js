@@ -19,6 +19,10 @@ module.exports = class Mistral {
         return this.getConfiguration().model;
     }
 
+    getSystemMessageContent() {
+        return this.getConfiguration().systemMessage || '';
+    }
+
     // setters
     setClient(client) {
         this.client = client;
@@ -33,14 +37,15 @@ module.exports = class Mistral {
     }
 
     async prompt(prompt) {
+        const messages = [];
+        if(this.getSystemMessageContent()) {
+            messages.push(this.generateSystemMessage());
+        }
+        messages.push(this.generatePromptMessage(prompt));
+
         const response = await this.client.chat({
             model: this.getModel(),
-            messages: [
-                {
-                    role: 'user',
-                    content: prompt
-                }
-            ]
+            messages: messages,
         });
         return response.choices[0].message.content;
     }
@@ -49,5 +54,19 @@ module.exports = class Mistral {
 
     async importMistrallClient() {
         return (await import('@mistralai/mistralai')).default;
+    }
+
+    generatePromptMessage(prompt) {
+        return {
+            role: 'user',
+            content: prompt
+        };
+    }
+
+    generateSystemMessage() {
+        return {
+            role: 'system',
+            content: this.getSystemMessageContent()
+        };
     }
 } 

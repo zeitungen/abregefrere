@@ -18,6 +18,10 @@ module.exports = class OpenAI {
         return this.getConfiguration().model;
     }
 
+    getSystemMessageContent() {
+        return this.getConfiguration().systemMessage || '';
+    }
+
     getClient() {
         return this.client;
     }
@@ -36,14 +40,15 @@ module.exports = class OpenAI {
     }
 
     async prompt(prompt) {
+        const messages = [];
+        if(this.getSystemMessageContent()) {
+            messages.push(this.generateSystemMessage());
+        }
+        messages.push(this.generatePromptMessage(prompt));
+
         const response = await this.client.chat.completions.create({
             model: this.getModel(),
-            messages: [
-                {
-                    role: 'user',
-                    content: prompt
-                }
-            ]
+            messages: messages
         });
         return response.choices[0].message.content;
     }
@@ -52,5 +57,19 @@ module.exports = class OpenAI {
 
     async importOpenAIClient() {
         return (await import('openai')).default;
+    }
+
+    generatePromptMessage(prompt) {
+        return {
+            role: 'user',
+            content: prompt
+        };
+    }
+
+    generateSystemMessage() {
+        return {
+            role: 'system',
+            content: this.getSystemMessageContent()
+        };
     }
 }
