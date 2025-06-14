@@ -2,9 +2,31 @@ node_modules/
 dist/
 build/
 .devcontainer
+.github/
 
+# Git
+.git
+.gitignore
+
+# Logs
 *.log
 *.tmp
 *.bak
 *.swp
 *.DS_Store
+npm-debug.log*
+
+# IDE files
+.idea
+.vscode
+
+# Test files
+__tests__/
+test/
+tests/
+
+# Configuration files not needed in the package
+.editorconfig
+.eslintrc
+.prettierrc
+*.config.js
