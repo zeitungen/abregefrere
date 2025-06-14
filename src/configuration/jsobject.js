@@ -23,6 +23,10 @@ class JsObjectConfig {
     getEngineConfiguration() {
         return this.data.engine.configuration;
     }
+    
+    getSystemPrompt() {
+        return this.data.systemPrompt;
+    }
 }
 
 module.exports = { JsObjectConfig };

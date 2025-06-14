@@ -20,6 +20,22 @@ create a `config.json` file
 }
 ```
 
+Vous pouvez également personnaliser le prompt système utilisé par l'IA :
+
+```json
+{
+    "defaultLanguage": "fr-FR",
+    "systemPrompt": "Tu es un assistant spécialisé dans la synthèse de textes français, conçu pour être précis et concis.",
+    "engine": {
+        "name": "mistral",
+        "configuration": {
+            "apiKey": "your key",
+            "model": "open-mixtral-8x22b"
+        }
+    }
+}
+```
+
 ```js
 const path = require('path');
 const { 

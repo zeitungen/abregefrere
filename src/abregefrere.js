@@ -30,14 +30,17 @@ class AbregeFrere {
         this.baragouiner = await this.createBaragouiner();
         this.aiEngine = await this.createAiEngine();
         
-        // Définir le message système pour les moteurs d'IA
-        const systemPrompt = await this.getBaragouiner().getSystemPrompt();
-        if (this.aiEngine.setSystemMessageContent) {
-            this.aiEngine.setSystemMessageContent(systemPrompt);
-        } else {
-            // Mettre à jour la configuration pour inclure le message système
-            const engineConfig = this.config.getEngineConfiguration();
-            engineConfig.systemMessage = systemPrompt;
+        // Vérifier si un prompt système est déjà configuré dans le moteur d'IA
+        const engineConfig = this.config.getEngineConfiguration();
+        if (!engineConfig.systemMessage) {
+            // Définir le message système pour les moteurs d'IA seulement s'il n'est pas déjà configuré
+            const systemPrompt = await this.getBaragouiner().getSystemPrompt();
+            if (this.aiEngine.setSystemMessageContent) {
+                this.aiEngine.setSystemMessageContent(systemPrompt);
+            } else {
+                // Mettre à jour la configuration pour inclure le message système
+                engineConfig.systemMessage = systemPrompt;
+            }
         }
     }
 

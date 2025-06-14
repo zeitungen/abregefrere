@@ -25,6 +25,12 @@ class PromptEngine {
     }
 
     async getSystemTemplate() {
+        // Si un system prompt est défini dans la configuration, on l'utilise
+        const configSystemPrompt = this.config.getSystemPrompt?.();
+        if (configSystemPrompt) {
+            return configSystemPrompt;
+        }
+        // Sinon, on utilise celui défini dans le fichier de prompts
         return this.prompts.system;
     }
 
