@@ -24,12 +24,28 @@ class PromptEngine {
         this.prompts = await this.loadPrompts(lang);
     }
 
+    async getSystemTemplate() {
+        return this.prompts.system;
+    }
+
     async getFiveDotsTemplate() {
         return this.prompts.fiveDots;
     }
 
     async getFiveTagsTemplate() {
         return this.prompts.fiveTags;
+    }
+    
+    async getSummaryTemplate() {
+        return this.prompts.summary;
+    }
+    
+    async getSimplifyTemplate() {
+        return this.prompts.simplify;
+    }
+    
+    async getCritiqueTemplate() {
+        return this.prompts.critique;
     }
 
     // init helpers

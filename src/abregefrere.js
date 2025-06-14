@@ -29,6 +29,16 @@ class AbregeFrere {
     async init() {
         this.baragouiner = await this.createBaragouiner();
         this.aiEngine = await this.createAiEngine();
+        
+        // Définir le message système pour les moteurs d'IA
+        const systemPrompt = await this.getBaragouiner().getSystemPrompt();
+        if (this.aiEngine.setSystemMessageContent) {
+            this.aiEngine.setSystemMessageContent(systemPrompt);
+        } else {
+            // Mettre à jour la configuration pour inclure le message système
+            const engineConfig = this.config.getEngineConfiguration();
+            engineConfig.systemMessage = systemPrompt;
+        }
     }
 
     async fiveDots(datasource, nb = 5) {
@@ -43,6 +53,27 @@ class AbregeFrere {
         const prompt = await this.getBaragouiner().getFiveTags({ input, nb });
         const response = await this.prompt(prompt);
         return this.parseFiveTagsResponse(response);
+    }
+    
+    async summary(datasource, nbWords = 150) {
+        const input = await datasource.get();
+        const prompt = await this.getBaragouiner().getSummary({ input, nbWords });
+        const response = await this.prompt(prompt);
+        return { summary: response };
+    }
+    
+    async simplify(datasource, level = 3) {
+        const input = await datasource.get();
+        const prompt = await this.getBaragouiner().getSimplify({ input, level });
+        const response = await this.prompt(prompt);
+        return { simplified: response };
+    }
+    
+    async critique(datasource) {
+        const input = await datasource.get();
+        const prompt = await this.getBaragouiner().getCritique({ input });
+        const response = await this.prompt(prompt);
+        return this.parseCritiqueResponse(response);
     }
 
     // init
@@ -76,6 +107,10 @@ class AbregeFrere {
         return {
             tags: response.split(',').map(tag => tag.trim()),
         }
+    }
+    
+    parseCritiqueResponse(response) {
+        return JSON.parse(response);
     }
 }
 

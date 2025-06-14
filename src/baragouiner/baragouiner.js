@@ -20,6 +20,10 @@ class Baragouiner {
         await this.prompt.init();
     }
 
+    async getSystemPrompt() {
+        return await this.prompt.getSystemTemplate();
+    }
+
     async getFiveDotsPrompt(params) {
         const template = await this.prompt.getFiveDotsTemplate();
 
@@ -45,6 +49,44 @@ class Baragouiner {
             params.input = '';
         }
 
+        return this.render(template, params);
+    }
+    
+    async getSummary(params) {
+        const template = await this.prompt.getSummaryTemplate();
+        
+        if(!params.nbWords) {
+            params.nbWords = 150;
+        }
+        
+        if(params.input === undefined) {
+            params.input = '';
+        }
+        
+        return this.render(template, params);
+    }
+    
+    async getSimplify(params) {
+        const template = await this.prompt.getSimplifyTemplate();
+        
+        if(!params.level) {
+            params.level = 3;
+        }
+        
+        if(params.input === undefined) {
+            params.input = '';
+        }
+        
+        return this.render(template, params);
+    }
+    
+    async getCritique(params) {
+        const template = await this.prompt.getCritiqueTemplate();
+        
+        if(params.input === undefined) {
+            params.input = '';
+        }
+        
         return this.render(template, params);
     }
 

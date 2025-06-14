@@ -27,6 +27,10 @@ module.exports = class Mistral {
     setClient(client) {
         this.client = client;
     }
+    
+    setSystemMessageContent(content) {
+        this.configuration.systemMessage = content;
+    }
 
     // interface methods
 

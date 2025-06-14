@@ -30,6 +30,10 @@ module.exports = class OpenAI {
     setClient(client) {
         this.client = client;
     }
+    
+    setSystemMessageContent(content) {
+        this.configuration.systemMessage = content;
+    }
 
     // interface methods
 
