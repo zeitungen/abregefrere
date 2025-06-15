@@ -3,7 +3,7 @@
  * @param {Buffer|string} content - Le contenu à analyser
  * @returns {string} - Le type de Readabilizer à utiliser
  */
-const { Readabilizer } = require('../readabilize');
+const Readabilizer = require('./readabilizer');
 
 function detectContentType(content) {
     // Convertir en string si c'est un buffer

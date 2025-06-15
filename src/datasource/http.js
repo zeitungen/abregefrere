@@ -1,5 +1,5 @@
 const { CookieJar } = require('tough-cookie');
-const { readabilize } = require('../readabilize');
+const { readabilize, Readabilizer } = require('../readabilize');
 
 class HttpDatasource {
     config = {};
@@ -50,14 +50,35 @@ class HttpDatasource {
     async get(retry = true) {
         const got = this.getGot();
         try {
-            const response = await got(this.getUrl(), this.createOptions());
+            // Déterminer si nous devons traiter la réponse comme binaire en fonction du readabilizer
+            const readabilizerType = this.getReadabilizer();
+            const isReadabilizerPdf = readabilizerType === Readabilizer.pdf || readabilizerType === Readabilizer.auto;
+            
+            // Options pour la requête
+            const options = this.createOptions();
+            
+            // Si c'est un PDF ou auto, nous voulons des données binaires
+            if (isReadabilizerPdf) {
+                options.responseType = 'buffer';
+            }
+            
+            const response = await got(this.getUrl(), options);
             
             // Handle cookies from successful responses
             if (response.headers && response.headers['set-cookie']) {
                 await this.handleCookies(response.headers['set-cookie']);
             }
             
-            return readabilize(this.getReadabilizer(), response.body);
+            // Vérifiez le type de contenu pour déterminer le traitement approprié
+            const contentType = response.headers['content-type'] || '';
+            
+            // Si le readabilizer est auto et que nous détectons un PDF, définir le readabilizer sur pdf
+            if (readabilizerType === Readabilizer.auto && contentType.includes('application/pdf')) {
+                console.log('Contenu détecté comme PDF d\'après les en-têtes HTTP');
+                return readabilize(Readabilizer.pdf, response.body);
+            }
+            
+            return readabilize(readabilizerType, response.body);
         } catch(e) {
             console.error(`Error fetching ${this.getUrl()}: ${e.message}`);
             

@@ -1,12 +1,7 @@
 const html = require('./html');
-const pdf = require('./pdf');
+const readabilizePdf = require('./pdf');
 const { detectContentType } = require('./content-detector');
-
-const Readabilizer = {
-    html: 'html',
-    pdf: 'pdf',
-    auto: 'auto'
-}
+const Readabilizer = require('./readabilizer');
 
 const readabilize = (type, input) => {
     // Si le type est 'auto', on détecte automatiquement le type de contenu
@@ -24,7 +19,7 @@ const readabilize = (type, input) => {
         case Readabilizer.html:
             return html(input);
         case Readabilizer.pdf:
-            return pdf(input);
+            return readabilizePdf(input);
         default:
             throw new Error('Unknown readabilizer type');
     }

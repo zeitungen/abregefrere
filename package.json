@@ -1,6 +1,6 @@
 {
   "name": "abregefrere",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "AI powered tools for summarizing texts",
   "main": "src/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "jsdom": "^24.1.0",
     "mustache": "^4.2.0",
     "openai": "^4.52.5",
-    "pdf-parse": "^1.1.1",
+    "pdfreader": "^3.0.7",
     "tough-cookie": "^5.1.2"
   }
 }
